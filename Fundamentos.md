@@ -155,7 +155,7 @@ Todo este proceso ocurre automáticamente mediante un único comando.
 
 ---
 
-# 📦 Paso 5. Verificar las imágenes descargadas
+# 📦 Verificar las imágenes descargadas
 
 ```bash
 docker images
@@ -172,7 +172,7 @@ Observe que ahora existe una imagen almacenada localmente.
 
 ---
 
-# 📦 Paso 6. Verificar los contenedores
+# 📦 Verificar los contenedores
 
 Mostrar únicamente los contenedores en ejecución.
 
@@ -202,7 +202,7 @@ Observe que el contenedor permanece registrado, aunque ya terminó su ejecución
 
 ---
 
-# 🧹 Paso 7. Eliminar el contenedor
+# 🧹 Eliminar el contenedor
 
 Eliminar el contenedor utilizando su ID o nombre.
 
@@ -218,7 +218,7 @@ docker ps -a
 
 ---
 
-# 🗑️ Paso 8. Eliminar la imagen
+# 🗑️ Eliminar la imagen
 
 ```bash
 docker rmi hello-world
