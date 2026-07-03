@@ -53,7 +53,7 @@ Posteriormente se realizarán diferentes tareas administrativas para analizar el
 ---
 ## Procedimiento
 
-### Descargar la imagen
+1. Descargar la imagen
 
 >- Consulte las imágenes disponibles
 
