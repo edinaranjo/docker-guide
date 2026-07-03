@@ -1,6 +1,6 @@
 # 🚀 Creación de contenedores
 
-Crea un nuevo contenedor a partir de una imagen Docker.
+Crea un nuevo contenedor a partir de una imagen Docker. 
 
 ```bash
 docker run -it --name <container-name> \
