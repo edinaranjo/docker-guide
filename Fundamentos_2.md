@@ -34,3 +34,12 @@ docker run -d --name miweb -p 8080:80 nginx
 docker exec -it <container-name|id> <command>
 ```
 
+# ⚙️ Healthcheck
+
+```bash
+docker run -d --name miweb -p 8080:80 \
+--health-cmd="curl -f http://localhost/ || exit 1" \
+--health-interval=30s \
+--health-retries=3 \
+nginx
+```
