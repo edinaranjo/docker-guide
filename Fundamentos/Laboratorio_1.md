@@ -49,3 +49,14 @@ Posteriormente se realizarán diferentes tareas administrativas para analizar el
                      │
                      ▼
                 Healthcheck
+
+---
+## Procedimiento
+
+### Descargar la imagen
+
+>- Consulte las imágenes disponibles
+
+```bash
+docker image ls
+```
