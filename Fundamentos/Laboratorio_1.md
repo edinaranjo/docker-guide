@@ -12,3 +12,40 @@ Al finalizar esta práctica el estudiante será capaz de:
 >- Visualizar los procesos internos utilizando docker top.
 >- Inspeccionar la configuración del contenedor.
 >- Implementar y verificar un Healthcheck.
+
+---
+
+## Escenario
+
+En este laboratorio se desplegará un pequeño servidor HTTP basado en la imagen oficial HashiCorp Http-Echo, el cual responderá siempre con un mensaje personalizado.
+
+Posteriormente se realizarán diferentes tareas administrativas para analizar el comportamiento del contenedor.
+
+---
+## Arquitectura del laboratorio
+
+                    Navegador Web
+                           │
+                    http://localhost:5678
+                           │
+                           ▼
+              +-----------------------------+
+              |  HashiCorp Http-Echo        |
+              |     Docker Container        |
+              +-----------------------------+
+                     │      │       │
+                     │      │       │
+                     ▼      ▼       ▼
+              docker logs  docker exec
+                     │
+                     ▼
+              docker top
+                     │
+                     ▼
+              docker inspect
+                     │
+                     ▼
+              docker stats
+                     │
+                     ▼
+                Healthcheck
