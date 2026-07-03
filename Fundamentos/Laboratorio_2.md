@@ -174,115 +174,158 @@ Analice la información obtenida e identifique los siguientes elementos:
 
 ---
 
-# 🌐 Paso 5. Acceder a Grafana
+---
 
-Abrir un navegador web y acceder a la siguiente dirección:
+# 🌐 Paso 5. Acceder al servidor web
+
+Una vez iniciado el contenedor, abra un navegador web y acceda a la siguiente dirección:
 
 ```text
-http://localhost:3000
+http://localhost:8080
 ```
 
-## 🔐 Credenciales iniciales
+Deberá visualizar la página predeterminada del servidor **Caddy**.
 
-| Parámetro | Valor |
-|-----------|-------|
-| **Usuario** | `admin` |
-| **Contraseña** | `admin` |
-
-Durante el primer inicio de sesión, Grafana solicitará el cambio de la contraseña del usuario administrador.
-
-> 💡 **Recomendación:** Utilice una contraseña segura que combine letras mayúsculas, minúsculas, números y caracteres especiales.
+> 💡 **Nota:** La visualización de esta página confirma que el servidor web se encuentra operativo y que el puerto **8080** ha sido publicado correctamente en el equipo anfitrión.
 
 ---
 
 # 🌍 Paso 6. Verificar la conectividad HTTP
 
-Una vez que Grafana se encuentre en ejecución, verifique la disponibilidad del servicio mediante su endpoint de estado.
+Además del navegador, es posible comprobar la disponibilidad del servicio utilizando herramientas de línea de comandos.
 
-Ejecute el siguiente comando desde una nueva terminal:
+## 📡 Consultar la página principal
+
+Ejecute el siguiente comando desde una nueva terminal.
 
 ```bash
-curl http://localhost:3000/api/health
+curl http://localhost:8080
 ```
 
 ### 📌 Resultado esperado
 
-```json
-{
-  "commit":"...",
-  "database":"ok",
-  "version":"..."
-}
-```
-
-### 🔍 Interpretación
-
-| Campo | Descripción |
-|--------|-------------|
-| **commit** | Identificador de la versión compilada de Grafana. |
-| **database** | Estado de la base de datos interna. El valor **ok** indica que el servicio funciona correctamente. |
-| **version** | Versión instalada de Grafana. |
+Se mostrará el contenido HTML correspondiente a la página predeterminada del servidor **Caddy**.
 
 ---
 
-## 📡 Verificar el código de respuesta HTTP
+## 🔍 Verificar el código de respuesta HTTP
 
-Consultar únicamente las cabeceras HTTP del servicio.
+Consultar únicamente las cabeceras HTTP del servidor.
 
 ```bash
-curl -I http://localhost:3000
+curl -I http://localhost:8080
 ```
 
 ### 📌 Resultado esperado
 
 ```text
-HTTP/1.1 302 Found
+HTTP/1.1 200 OK
 ```
 
-### 🔍 ¿Por qué aparece el código **302 Found**?
+### 🔍 Interpretación
 
-Grafana redirige automáticamente las solicitudes realizadas sobre la ruta principal (`/`) hacia la página de autenticación o la interfaz principal del sistema. Esta respuesta confirma que el servidor web está disponible y procesando correctamente las solicitudes HTTP.
+| Código | Significado |
+|----------|-------------|
+| **200 OK** | El servidor procesó correctamente la solicitud HTTP y el servicio se encuentra disponible. |
 
-> 💡 **Nota:** Un código **302** no representa un error; indica una redirección temporal generada por la propia aplicación.
+> 💡 **Nota:** A diferencia de Grafana, Caddy responde directamente con un código **200 OK**, ya que sirve contenido web estático sin realizar redirecciones.
 
 ---
 
-# 📈 Paso 7. Generar tráfico sobre la aplicación
+## 🌐 Comprobar conectividad mediante Ping
 
-Con el objetivo de observar el comportamiento del contenedor bajo carga, genere actividad sobre la interfaz web de Grafana.
+Si el protocolo ICMP se encuentra habilitado en el equipo anfitrión, ejecutar:
 
-Realice las siguientes acciones desde el navegador:
+```bash
+ping localhost
+```
 
-- 🔑 Iniciar sesión.
-- 🔄 Actualizar repetidamente el Dashboard.
-- ⚙️ Acceder al menú **Administration**.
-- 🛠️ Acceder al menú **Configuration**.
-- 🏠 Regresar a la página principal.
+Interrumpir la ejecución utilizando:
 
-Mientras realiza estas acciones, abra otra terminal y ejecute:
+```text
+Ctrl + C
+```
+
+> 💡 Esta prueba permite comprobar únicamente la conectividad con el equipo anfitrión, no el funcionamiento del servidor web.
+
+---
+
+# 📈 Paso 7. Generar tráfico sobre el servidor
+
+Con el objetivo de observar el comportamiento del contenedor bajo carga, genere múltiples solicitudes HTTP hacia el servidor.
+
+Abra una nueva terminal y ejecute:
 
 ```bash
 docker stats
 ```
 
-## 📊 Analizar las siguientes métricas
+Posteriormente, desde otra terminal, ejecute varias solicitudes consecutivas.
+
+## Opción 1. Utilizando curl
+
+```bash
+for i in {1..50}
+do
+    curl http://localhost:8080 > /dev/null
+done
+```
+
+---
+
+## Opción 2. Utilizando ApacheBench (Recomendado)
+
+Si ApacheBench se encuentra instalado:
+
+```bash
+ab -n 500 -c 20 http://localhost:8080/
+```
+
+Donde:
+
+| Parámetro | Descripción |
+|-----------|-------------|
+| `-n 500` | Envía un total de 500 solicitudes HTTP. |
+| `-c 20` | Mantiene 20 conexiones concurrentes. |
+
+---
+
+## 📊 Analizar las métricas de Docker
+
+Mientras se generan las solicitudes, observe la salida del siguiente comando:
+
+```bash
+docker stats
+```
+
+Analice las siguientes métricas.
 
 | Métrica | Descripción |
 |----------|-------------|
 | ⚙️ **CPU %** | Porcentaje de utilización del procesador. |
 | 🧠 **MEM USAGE** | Memoria consumida por el contenedor. |
-| 🌐 **NET I/O** | Tráfico de red recibido y transmitido. |
+| 🌐 **NET I/O** | Cantidad de datos recibidos y transmitidos. |
+| 🔄 **PIDS** | Número de procesos activos dentro del contenedor. |
 
-> 💡 **Pregunta de análisis:** ¿Cuál de las tres métricas presentó la mayor variación durante la interacción con Grafana?
+> 💡 **Pregunta de análisis:** ¿Qué métrica presentó la mayor variación durante la generación de tráfico HTTP? ¿Por qué considera que dicho recurso fue el más afectado?
 
 ---
+
+## 📌 Actividad adicional
+
+Mientras continúa ejecutándose `docker stats`, abra varias pestañas del navegador y actualice continuamente la página principal del servidor.
+
+Compare el consumo de recursos obtenido mediante el navegador con el observado durante la prueba automatizada realizada con **ApacheBench** o mediante múltiples solicitudes con **curl**.
+
+Analice cuál de los dos métodos genera una mayor carga sobre el servidor web.
+
 
 # 🔍 Paso 8. Inspeccionar el contenedor
 
 Consultar la configuración completa del contenedor.
 
 ```bash
-docker inspect grafana-lab
+docker inspect caddy-lab
 ```
 
 Analice la salida en formato **JSON** e identifique la siguiente información:
@@ -301,12 +344,12 @@ Analice la salida en formato **JSON** e identifique la siguiente información:
 ```bash
 docker inspect \
 -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
-grafana-lab
+caddy-lab
 ```
 
 ### 💡 Pregunta de análisis
 
-¿Por qué Docker asigna una dirección IP privada al contenedor si el servicio ya se encuentra publicado mediante el puerto **3000**?
+¿Por qué Docker asigna una dirección IP privada al contenedor si el servicio ya se encuentra publicado mediante el puerto **8080**?
 
 ---
 
@@ -315,7 +358,7 @@ grafana-lab
 Consultar los procesos que actualmente se encuentran ejecutándose dentro del contenedor.
 
 ```bash
-docker top grafana-lab
+docker top caddy-lab
 ```
 
 ## 📊 Analizar la salida
@@ -341,7 +384,7 @@ Los registros (*logs*) permiten conocer los eventos generados por una aplicació
 Para visualizar los registros en tiempo real, ejecute:
 
 ```bash
-docker logs -tf grafana-lab
+docker logs -tf caddy-lab
 ```
 
 ## 🔍 Opciones utilizadas
@@ -352,17 +395,17 @@ docker logs -tf grafana-lab
 | `-f` | Mantiene la visualización de los registros en tiempo real (*Follow Mode*). |
 
 ---
+## 📈 Generar actividad sobre el servidor web
 
-## 📈 Generar actividad sobre Grafana
+Mientras el comando permanece ejecutándose, genere múltiples solicitudes HTTP hacia el servidor.
 
-Mientras el comando permanece ejecutándose, realice las siguientes acciones desde el navegador:
+Puede hacerlo de cualquiera de las siguientes maneras:
 
-- 🔄 Actualice varias veces la página principal.
-- 🔑 Inicie sesión en Grafana.
-- ⚙️ Acceda a los menús **Administration** y **Configuration**.
-- 🏠 Regrese al Dashboard principal.
+- 🌐 Actualizando repetidamente la página `http://localhost:8080`.
+- 💻 Ejecutando varias solicitudes mediante `curl`.
+- 🚀 Utilizando una herramienta de pruebas de carga como **ApacheBench (ab)**.
 
-Observe cómo aparecen nuevos eventos en la terminal cada vez que Grafana recibe una solicitud HTTP.
+Observe cómo aparecen nuevos registros cada vez que el servidor recibe una solicitud HTTP.
 
 > 💡 **Nota:** Para finalizar la visualización de los registros utilice la combinación de teclas **Ctrl + C**.
 
@@ -370,21 +413,27 @@ Observe cómo aparecen nuevos eventos en la terminal cada vez que Grafana recibe
 
 # ❤️ Paso 11. Simular un fallo del Healthcheck
 
-En esta actividad se desplegará un segundo contenedor con un **Healthcheck** configurado de forma incorrecta. El objetivo es comparar el comportamiento de un servicio **healthy** con otro **unhealthy**.
+En esta actividad se desplegará un segundo contenedor con un **Healthcheck** configurado deliberadamente de forma incorrecta. El objetivo es comparar un servicio **operativo (healthy)** con otro cuyo **Healthcheck** falla (**unhealthy**).
 
 Crear el segundo contenedor.
 
 ```bash
 docker run -d \
---name grafana-error \
--p 3001:3000 \
---health-cmd="wget --spider -q http://localhost:3000/noexiste || exit 1" \
+--name caddy-error \
+-p 8081:80 \
+--health-cmd="wget -q --spider http://127.0.0.1:9999 || exit 1" \
 --health-interval=10s \
+--health-timeout=5s \
 --health-retries=2 \
-grafana/grafana
+--health-start-period=10s \
+caddy:alpine
 ```
 
-Espere aproximadamente **60 segundos** para que Docker ejecute varias comprobaciones del Healthcheck.
+> 💡 **¿Qué ocurre en este ejemplo?**
+>
+> El servidor web continúa ejecutándose sobre el puerto **80**, sin embargo el Healthcheck intenta verificar el puerto **9999**, donde no existe ningún servicio. Como consecuencia, todas las comprobaciones fallarán y Docker marcará el contenedor como **unhealthy**.
+
+Espere aproximadamente **30 segundos** para que Docker ejecute varias verificaciones.
 
 ---
 
@@ -399,22 +448,22 @@ docker ps
 ### 📌 Resultado esperado
 
 | Contenedor | Estado esperado |
-|-------------|----------------|
-| 🟢 **grafana-lab** | `Up (healthy)` |
-| 🔴 **grafana-error** | `Up (unhealthy)` |
+|------------|----------------|
+| 🟢 **caddy-lab** | `Up (healthy)` |
+| 🔴 **caddy-error** | `Up (unhealthy)` |
 
-Observe que ambos contenedores continúan ejecutándose, pero únicamente uno de ellos responde correctamente al Healthcheck.
+Observe que ambos contenedores permanecen en ejecución, pero únicamente uno supera correctamente el Healthcheck.
 
 ---
 
-## 🔍 Verificar el estado del Healthcheck
+## 🔍 Consultar el estado del Healthcheck
 
-Consultar únicamente el estado del contenedor con error.
+Verificar únicamente el estado del contenedor con error.
 
 ```bash
 docker inspect \
 --format='{{.State.Health.Status}}' \
-grafana-error
+caddy-error
 ```
 
 ### 📌 Resultado esperado
@@ -423,28 +472,45 @@ grafana-error
 unhealthy
 ```
 
+También puede consultar el historial completo del Healthcheck.
+
+```bash
+docker inspect \
+--format='{{json .State.Health}}' \
+caddy-error
+```
+
+Analice los siguientes campos:
+
+| Campo | Descripción |
+|--------|-------------|
+| **Status** | Estado actual del Healthcheck. |
+| **FailingStreak** | Número de comprobaciones consecutivas que han fallado. |
+| **Log** | Historial de las verificaciones realizadas por Docker. |
+
 ---
 
 ## 💡 Preguntas de análisis
 
-1. ¿Por qué el contenedor **grafana-error** permanece en ejecución aunque su estado sea **unhealthy**?
-2. ¿Cuál es la diferencia entre el estado **Up** mostrado por `docker ps` y el estado reportado por el **Healthcheck**?
-3. ¿Qué utilidad tendría esta información en plataformas como Docker Compose, Docker Swarm o Kubernetes?
+1. ¿Por qué el contenedor **caddy-error** continúa en ejecución aunque Docker lo marque como **unhealthy**?
+2. ¿Qué diferencia existe entre el estado **Up** mostrado por `docker ps` y el estado del **Healthcheck**?
+3. ¿Qué ventajas ofrece un Healthcheck para plataformas como Docker Compose, Docker Swarm o Kubernetes?
+4. ¿Qué sucedería si el puerto configurado en el Healthcheck fuese correcto pero el servidor web dejara de responder?
 
 ---
 
 # 🧹 Paso 12. Finalizar la práctica
 
-Una vez concluidas las pruebas, detenga ambos contenedores.
+Detener ambos contenedores.
 
 ```bash
-docker stop grafana-lab grafana-error
+docker stop caddy-lab caddy-error
 ```
 
 Eliminar los contenedores.
 
 ```bash
-docker rm grafana-lab grafana-error
+docker rm caddy-lab caddy-error
 ```
 
 ---
@@ -457,6 +523,8 @@ Consultar los contenedores existentes.
 docker ps -a
 ```
 
-Los contenedores **grafana-lab** y **grafana-error** ya no deberán aparecer en la lista.
+Los contenedores **caddy-lab** y **caddy-error** ya no deberán aparecer en la lista.
+
+> 💡 **Buenas prácticas:** Al finalizar un laboratorio elimine los contenedores que ya no se utilizarán. Esto ayuda a mantener un entorno Docker organizado, reduce el consumo de recursos y evita conflictos en futuras prácticas.
 
 > 💡 **Buenas prácticas:** Al finalizar un laboratorio es recomendable eliminar los contenedores que ya no se utilizarán. Esto permite mantener un entorno Docker limpio, evitar el consumo innecesario de recursos y facilitar la ejecución de futuras prácticas.
