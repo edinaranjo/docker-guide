@@ -158,4 +158,15 @@ docker logs -tf echo-lab
 ```
 
 >- Actualizar varias veces la página en el navegador.
+
     Observar cómo aparecen nuevas solicitudes HTTP.
+
+---
+
+## Inspeccionar el contenedor
+
+### Consultar toda la información del contenedor
+
+```bash
+docker inspect echo-lab
+```
