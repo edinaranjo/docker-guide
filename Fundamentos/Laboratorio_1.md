@@ -170,3 +170,37 @@ docker logs -tf echo-lab
 ```bash
 docker inspect echo-lab
 ```
+
+### Consultar imagen utilizada
+
+```bash
+docker inspect \
+-f '{{.Config.Image}}' \
+echo-lab
+```
+### Consultar Dirección IPv4
+
+```bash
+docker inspect \
+-f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
+echo-lab
+```
+### Consultar puertos publicados
+
+```bash
+docker inspect \
+-f '{{json .NetworkSettings.Ports}}' \
+echo-lab
+```
+### Consultar estado del contenedor
+
+```bash
+docker inspect \
+-f '{{.State.Status}}' \
+echo-lab
+```
+
+---
+
+## Monitorear recursos
+
