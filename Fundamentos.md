@@ -1,10 +1,10 @@
 
-# 🚀 Paso 1. Instalar Docker Engine
+# 🚀 Instalación de Docker Engine
 
 Ejecute el siguiente comando:
 
 ```bash
-sudo apt install docker.io -y
+sudo apt install docker* -y
 ```
 
 > **¿Qué realiza este comando?**
@@ -14,3 +14,5 @@ sudo apt install docker.io -y
 > - Instala Docker CLI.
 > - Instala el servicio `dockerd`.
 > - Configura las dependencias necesarias.
+
+Nota: Esta instalación es para distribuciones basadas en Debian
