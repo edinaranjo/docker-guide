@@ -59,6 +59,10 @@ Este laboratorio representa un escenario típico utilizado por equipos **DevOps*
 
 En esta primera actividad se descargará la imagen oficial de grafana desde **Docker Hub**. Posteriormente, se verificará que la imagen se encuentre disponible en el repositorio local del equipo
 
+```bash
+docker pull grafana/grafana:latest
+```
+
 ---
 
 # 🚀 Paso 2. Crear el contenedor con Healthcheck
