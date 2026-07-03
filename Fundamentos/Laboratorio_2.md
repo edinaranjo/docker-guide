@@ -1,6 +1,6 @@
 
 # 🐳 Laboratorio 2
-# 📊 Monitoreo y Validación Operacional de Contenedores con Grafana
+# 📊 Monitoreo y Validación Operacional de Contenedores con Caddy Alpine
 
 ## 🎯 Objetivos
 
@@ -57,7 +57,7 @@ Este laboratorio representa un escenario típico utilizado por equipos **DevOps*
 
 # 📥 Paso1 1. Descarga de la imagen
 
-En esta primera actividad se descargará la imagen oficial de grafana desde **Docker Hub**. Posteriormente, se verificará que la imagen se encuentre disponible en el repositorio local del equipo
+En esta primera actividad se descargará la imagen oficial de caddy alpine desde **Docker Hub**. Posteriormente, se verificará que la imagen se encuentre disponible en el repositorio local del equipo
 
 ```bash
 docker pull grafana/grafana:latest
