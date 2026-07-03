@@ -1,6 +1,6 @@
 
 # 🐳 Laboratorio 2
-# 📊 Monitoreo y Validación Operacional de Contenedores con Caddy Alpine
+# 📊 Monitoreo y Validación Operacional de Contenedores con Caddy Alpine 
 
 ## 🎯 Objetivos
 
