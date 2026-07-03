@@ -105,3 +105,17 @@ Explicación:
 | `hashicorp/http-echo` | Imagen utilizada.                       |
 | `-text`               | Mensaje que devolverá el servidor HTTP. |
 
+---
+
+## Verificar el funcionamiento
+
+### 1. Digitar la siguiente url en el navegador web
+
+```bash
+http://localhost:5678
+```
+Debe aparecer 
+
+```bash
+Bienvenido al laboratorio Docker
+```
