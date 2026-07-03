@@ -48,6 +48,7 @@ docker logs -tf <container-id>
 
 Para salir de esta visulaización se debe usar Ctrl + C.  
 
+---
 
 # ⚙️ Borrar un contenedor detenido
 
@@ -55,7 +56,7 @@ Para salir de esta visulaización se debe usar Ctrl + C.
 docker container rm <container-id>
 ```
 
-
+---
 # ⚙️ Estadísticas en Docker
 
 ## docker stats
@@ -82,6 +83,42 @@ docker stats [opciones] [contenedor1 contenedor2 ...}
 >- --no-stream → Muestra las estad´ısticas una sola vez en vez de en tiempo real.
 >- --format → Permite personalizar la salida usando Go templates, por ejemplo:
 
+Ejemplo con --format :
+
 ```bash
 docker stats -- format " table {{.Name }}\ t {{.CPUPerc }}\ t {{.MemUsage }} 
 ```
+---
+## docker inspect
+
+Muestra información detallada de un contenedor, incluyendo límites de recursos y configuraciones.
+
+```bash
+docker inspect mi_contenedor
+```
+---
+## docker top
+Lista los procesos que est ´an corriendo dentro de un contenedor, similar a ps en Linux
+
+```bash
+docker top mi_contenedor
+```
+---
+
+## docker events
+
+Monitorea eventos en tiempo real del demonio Docker, útil para logs de actividad y cambios de contenedores.
+
+```bash
+docker events
+```
+
+---
+## docker system df
+Muestra uso de disco de imágenes, contenedores y volúmenes.
+
+```bash
+docker system df
+```
+
+
