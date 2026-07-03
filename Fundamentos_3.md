@@ -46,6 +46,6 @@ docker logs -tf <container-id>
 >- -f ó --follow → hace que los logs se muestren en tiempo real.
 >- -t ó --timestamps → Agrega la marca de tiempo a cada línea de log, mostrando cuando ocurrió cada evento.
 
-Para salir de esta visulaización se debe usar Ctrl + C.
+Para salir de esta visulaización se debe usar Ctrl + C.  
 
 
