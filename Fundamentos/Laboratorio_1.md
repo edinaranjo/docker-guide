@@ -51,11 +51,9 @@ Posteriormente se realizarán diferentes tareas administrativas para analizar el
                 Healthcheck
 
 ---
-## Procedimiento
+## Descarga de la imagen
 
-### 1. Descargar la imagen
-
-Consulte las imágenes disponibles
+### 1. Consulte las imágenes disponibles
 
 ```bash
 docker image ls
@@ -79,8 +77,6 @@ docker image ls
 IMAGE                        ID             DISK USAGE   CONTENT SIZE   EXTRA
 hashicorp/http-echo:latest   fcb75f691c8b       16.7MB         4.63MB 
 ```
-### 4. 
+---
 
-5. 
-
-6. 
+## Crear el contenedor con Healthcheck
