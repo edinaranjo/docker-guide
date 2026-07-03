@@ -111,8 +111,31 @@ Explicación:
 ```bash
 docker ps
 ```
-Debe aparecer 
+Resultado esperado:
+
+```bash
+CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                         NAMES
+cdfda4b6005c   hashicorp/http-echo   "/http-echo -listen=…"   48 seconds ago   Up 44 seconds   0.0.0.0:5678->5678/tcp, [::]:5678->5678/tcp   echo-lab
+```
+
+--- 
+
+## Probar la aplicación
+
+### Abrir en el navegador web
+
+```bash
+http://localhost:5678
+```
+Debe mostrarse
 
 ```bash
 Bienvenido al laboratorio Docker
 ```
+### También puede verificarse desde otra terminal mediante:
+
+```bash
+curl http://localhost:5678
+```
+￼
+
