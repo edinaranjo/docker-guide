@@ -1,17 +1,23 @@
-# 🐳 Laboratorio: Administración y Monitoreo de Contenedores con HashiCorp Http-Echo
+# 🐳 Laboratorio: Administración Básica de Contenedores con HashiCorp Http-Echo
+
 
 ## Objetivos
-https://github.com/edinaranjo/docker-guide/blob/main/Fundamentos/Laboratorio_1.md
-Al finalizar esta práctica el estudiante será capaz de: 
 
->- Desplegar una aplicación HTTP utilizando Docker.
->- Comprender el ciclo de vida de un contenedor.
->- Acceder al contenedor mediante docker exec.
->- Analizar el consumo de recursos con docker stats.
->- Consultar los registros generados mediante docker logs.
->- Visualizar los procesos internos utilizando docker top.
->- Inspeccionar la configuración del contenedor.
->- Implementar y verificar un Healthcheck.
+Al finalizar esta práctica el estudiante será capaz de:
+
+>- Crear un contenedor Docker a partir de una imagen oficial.
+
+>- Publicar un servicio HTTP mediante Docker.
+
+>- Consultar el estado de los contenedores.
+
+>- Analizar los registros generados por una aplicación.
+
+>- Inspeccionar la configuración interna de un contenedor.
+
+>- Monitorear el consumo de recursos.
+
+>- Detener y eliminar contenedores.
 
 ---
 
