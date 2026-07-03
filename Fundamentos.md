@@ -193,9 +193,7 @@ docker ps -a
 Salida esperada:
 
 ```text
-CONTAINER ID
-IMAGE
-STATUS
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
 
 Observe que el contenedor permanece registrado, aunque ya terminó su ejecución.
