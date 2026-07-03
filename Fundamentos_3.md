@@ -3,12 +3,14 @@
 ```bash
 docker start <container-id>
 ```
+---
 
 # ⚙️ Detener un contenedor
 
 ```bash
 docker stop <container-id>
 ```
+---
 
 # ⚙️ Contenedores temporales
 
@@ -27,3 +29,23 @@ docker run --rm alpine echo "Hola desde un contenedor temporal"
 
 Después de este comando, si ejecuta docker `ps -a`, no verá el contenedor porque ya fue
 eliminado.
+
+---
+
+# ⚙️ Logs en contenedores
+
+```bash
+docker logs <container-id>
+```
+## Logs en contenedores en tiempo real
+
+```bash
+docker logs -tf <container-id>
+```
+
+>- -f ó --follow → hace que los logs se muestren en tiempo real.
+>- -t ó --timestamps → Agrega la marca de tiempo a cada línea de log, mostrando cuando ocurrió cada evento.
+
+Para salir de esta visulaización se debe usar Ctrl + C.
+
+
