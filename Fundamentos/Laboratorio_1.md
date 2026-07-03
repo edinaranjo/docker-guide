@@ -55,8 +55,22 @@ Posteriormente se realizarán diferentes tareas administrativas para analizar el
 
 1. Descargar la imagen
 
->- Consulte las imágenes disponibles
+Consulte las imágenes disponibles
 
 ```bash
 docker image ls
 ```
+
+2. Descargar la imagen
+
+```bash
+docker pull hashicorp/http-echo
+```
+
+3. Verificar
+
+4. ```bash
+docker image ls
+```
+
+5. 
