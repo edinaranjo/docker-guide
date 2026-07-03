@@ -137,5 +137,12 @@ Bienvenido al laboratorio Docker
 ```bash
 curl http://localhost:5678
 ```
-￼
+￼---
 
+## Consultar los registros del contenedor
+
+### Mostrar los registros generados por la aplicación.
+
+```bash
+docker logs echo-lab
+```
