@@ -21,40 +21,33 @@ Al finalizar esta práctica el estudiante será capaz de:
 
 ---
 
-## Escenario
+## Introducción 
 
-En este laboratorio se desplegará un pequeño servidor HTTP basado en la imagen oficial HashiCorp Http-Echo, el cual responderá siempre con un mensaje personalizado.
+En este laboratorio se utilizará la imagen oficial HashiCorp Http-Echo, una aplicación ligera que implementa un servidor HTTP cuyo único propósito es responder con un mensaje configurado por el usuario.
 
-Posteriormente se realizarán diferentes tareas administrativas para analizar el comportamiento del contenedor.
+Esta imagen es ampliamente utilizada para pruebas de conectividad, balanceadores de carga, redes Docker y demostraciones básicas de contenedores.
 
 ---
 ## Arquitectura del laboratorio
 
-                    Navegador Web
-                           │
-                    http://localhost:5678
-                           │
-                           ▼
-              +-----------------------------+
-              |  HashiCorp Http-Echo        |
-              |     Docker Container        |
-              +-----------------------------+
-                     │      │       │
-                     │      │       │
-                     ▼      ▼       ▼
-              docker logs  docker exec
-                     │
-                     ▼
-              docker top
-                     │
-                     ▼
-              docker inspect
-                     │
-                     ▼
-              docker stats
-                     │
-                     ▼
-                Healthcheck
+                         Usuario
+                        │
+                        │ HTTP
+                        ▼
+              http://localhost:5678
+                        │
+                        ▼
+        +-------------------------------+
+        |  HashiCorp Http-Echo          |
+        |                               |
+        |  Docker Container             |
+        +-------------------------------+
+               │      │      │
+               │      │      │
+               ▼      ▼      ▼
+          docker logs
+          docker stats
+          docker inspect            
 
 ---
 ## Descarga de la imagen
@@ -64,6 +57,7 @@ Posteriormente se realizarán diferentes tareas administrativas para analizar el
 ```bash
 docker image ls
 ```
+Si la imagen aún no existe, continuar con el siguiente paso.
 
 ### 2. Descargar la imagen
 
@@ -77,7 +71,7 @@ docker pull hashicorp/http-echo
 docker image ls
 ```
 
-  Debe aparecer
+  Debe aparecer algo similar a:
 
 ```bash
 IMAGE                        ID             DISK USAGE   CONTENT SIZE   EXTRA
@@ -85,40 +79,37 @@ hashicorp/http-echo:latest   fcb75f691c8b       16.7MB         4.63MB
 ```
 ---
 
-## Crear el contenedor con Healthcheck
+## Crear el contenedor 
 
 ```bash
 docker run -d \
 --name echo-lab \
 -p 5678:5678 \
---health-cmd="wget --spider -q http://localhost:5678 || exit 1" \
---health-interval=20s \
---health-timeout=5s \
---health-retries=3 \
---health-start-period=10s \
 hashicorp/http-echo \
+-listen=:5678 \
 -text="Bienvenido al laboratorio Docker"
 ```
 Explicación:
 
-| Parámetro             | Descripción                             |
-| --------------------- | --------------------------------------- |
-| `-d`                  | Ejecuta el contenedor en segundo plano. |
-| `--name`              | Asigna un nombre al contenedor.         |
-| `-p 5678:5678`        | Publica el puerto HTTP.                 |
-| `--health-cmd`        | Verifica que el servicio HTTP responda. |
-| `--health-interval`   | Frecuencia de comprobación.             |
-| `hashicorp/http-echo` | Imagen utilizada.                       |
-| `-text`               | Mensaje que devolverá el servidor HTTP. |
+| Parámetro             | Descripción                                                                   |
+| --------------------- | ----------------------------------------------------------------------------- |
+| `docker run`          | Crea y ejecuta un nuevo contenedor.                                           |
+| `-d`                  | Ejecuta el contenedor en segundo plano.                                       |
+| `--name echo-lab`     | Asigna el nombre **echo-lab** al contenedor.                                  |
+| `-p 5678:5678`        | Publica el puerto 5678 del contenedor en el puerto 5678 del equipo anfitrión. |
+| `hashicorp/http-echo` | Imagen utilizada.                                                             |
+| `-listen=:5678`       | Configura el servidor HTTP para escuchar en el puerto 5678.                   |
+| `-text`               | Define el mensaje que devolverá el servidor.                                  |
+
 
 ---
 
-## Verificar el funcionamiento
+## Verificar el estado del contenedor
 
-### 1. Digitar la siguiente url en el navegador web
+### 1. Consultar los contenedores en ejecución
 
 ```bash
-http://localhost:5678
+docker ps
 ```
 Debe aparecer 
 
