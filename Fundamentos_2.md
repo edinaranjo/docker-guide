@@ -17,7 +17,7 @@ docker run -d <image-name>
 ## Ejemplo:
 
 ```bash
-docker run -d --name miweb -p 8080:80 nginx
+docker run -d - -name miweb -p 8080:80 nginx
 ```
 > - docker run → crea y ejecuta un contenedor.
 > - -d → lo ejecuta en modo desacoplado (segundo plano).
