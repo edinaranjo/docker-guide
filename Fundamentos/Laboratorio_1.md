@@ -137,7 +137,7 @@ Bienvenido al laboratorio Docker
 ```bash
 curl http://localhost:5678
 ```
-￼---
+---
 
 ## Consultar los registros del contenedor
 
@@ -146,3 +146,16 @@ curl http://localhost:5678
 ```bash
 docker logs echo-lab
 ```
+
+### Monitorear los registros en tiempo real
+
+>- Abrir una segunda terminal
+
+>- Ejecutar:
+
+```bash
+docker logs -tf echo-lab
+```
+
+>- Actualizar varias veces la página en el navegador.
+    Observar cómo aparecen nuevas solicitudes HTTP.
