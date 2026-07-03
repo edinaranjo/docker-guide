@@ -53,21 +53,21 @@ Posteriormente se realizarán diferentes tareas administrativas para analizar el
 ---
 ## Procedimiento
 
-1. Descargar la imagen
+### 1. Descargar la imagen
 
-  Consulte las imágenes disponibles
+Consulte las imágenes disponibles
 
 ```bash
 docker image ls
 ```
 
-2. Descargar la imagen
+### 2. Descargar la imagen
 
 ```bash
 docker pull hashicorp/http-echo
 ```
 
-3. Verificar
+### 3. Verificar
 
 ```bash
 docker image ls
@@ -79,7 +79,7 @@ docker image ls
 IMAGE                        ID             DISK USAGE   CONTENT SIZE   EXTRA
 hashicorp/http-echo:latest   fcb75f691c8b       16.7MB         4.63MB 
 ```
-4. 
+### 4. 
 
 5. 
 
