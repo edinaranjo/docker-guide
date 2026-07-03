@@ -21,7 +21,7 @@ En este laboratorio se desplegará una instancia de **Caddy Alpine** dentro de u
 
 Este laboratorio representa un escenario típico utilizado por equipos **DevOps** para validar la disponibilidad de aplicaciones antes de su despliegue en ambientes productivos.
 
-# 🏗️ Arquitectura del laboratorio
+# 🏗️ Arquitectura del laboratorio 
 
 ```text
                            👨‍💻 Cliente
