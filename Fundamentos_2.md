@@ -33,6 +33,7 @@ docker run -d --name miweb -p 8080:80 nginx
 ```bash
 docker exec -it <container-name|id> <command>
 ```
+---
 
 # ⚙️ Healthcheck
 
@@ -44,3 +45,18 @@ docker run -d --name miweb -p 8080:80 \
 nginx
 ```
 
+> - --health-cmd → comando para verificar si el servicio responde.
+> - --health-interval=30s → frecuencia de chequeo.
+> - -health-retries=3 → cuántos fallos seguidos se permiten antes de marcarlo como unhealthy
+
+## Comprobación de Healthcheck
+
+```bash
+docker inspect --format='{{json .State.Health.Status}}' <container-name>
+```
+
+Posibles resultados:
+
+> - healthy → el contenedor está bien.
+> - unhealthy → el healthcheck ha fallado.
+> - starting → el healthcheck aún está inicializando
