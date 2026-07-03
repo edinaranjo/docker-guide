@@ -105,7 +105,7 @@ Este comando es útil cuando se realizan cambios en la configuración del servic
 
 ---
 
-# 🐋 Paso 4. Ejecutar el primer contenedor
+# 🐋 Ejecutar el primer contenedor
 
 Docker proporciona una imagen denominada **hello-world**, diseñada para comprobar que la instalación funciona correctamente.
 
