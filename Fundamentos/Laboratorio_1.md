@@ -80,3 +80,28 @@ hashicorp/http-echo:latest   fcb75f691c8b       16.7MB         4.63MB
 ---
 
 ## Crear el contenedor con Healthcheck
+
+```bash
+docker run -d \
+--name echo-lab \
+-p 5678:5678 \
+--health-cmd="wget --spider -q http://localhost:5678 || exit 1" \
+--health-interval=20s \
+--health-timeout=5s \
+--health-retries=3 \
+--health-start-period=10s \
+hashicorp/http-echo \
+-text="Bienvenido al laboratorio Docker"
+```
+Explicación:
+
+| Parámetro             | Descripción                             |
+| --------------------- | --------------------------------------- |
+| `-d`                  | Ejecuta el contenedor en segundo plano. |
+| `--name`              | Asigna un nombre al contenedor.         |
+| `-p 5678:5678`        | Publica el puerto HTTP.                 |
+| `--health-cmd`        | Verifica que el servicio HTTP responda. |
+| `--health-interval`   | Frecuencia de comprobación.             |
+| `hashicorp/http-echo` | Imagen utilizada.                       |
+| `-text`               | Mensaje que devolverá el servidor HTTP. |
+
