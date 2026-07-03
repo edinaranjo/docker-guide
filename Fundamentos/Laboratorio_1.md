@@ -161,6 +161,8 @@ docker logs -tf echo-lab
 
     Observar cómo aparecen nuevas solicitudes HTTP.
 
+>- Salir utilizando Ctrl+C
+
 ---
 
 ## Inspeccionar el contenedor
@@ -204,3 +206,117 @@ echo-lab
 
 ## Monitorear recursos
 
+Ejecutar:
+
+```bash
+docker stats
+```
+
+Mientras el comando permanece ejecutándose:
+
+Actualizar continuamente:
+
+```bash
+http://localhost:5678
+```
+
+Observar el incremento de:
+
+>- CPU
+>- Tráfico de red
+>- Memoria utilizada
+
+---
+
+## Mostrar estadísticas una sola vez
+
+### Ejecutar
+
+```bash
+docker stats --no-stream
+```
+
+Analizar:
+
+>- CPU %
+>- MEM USAGE
+>- NET I/O
+>- PIDS
+
+---
+
+## Personaliza la salida de docker stats
+
+```bash
+docker stats \
+--format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.NetIO}}"
+```
+
+Resultado esperado:
+
+```bash
+NAME        CPU %     MEM USAGE      NET I/O
+
+echo-lab    0.05%     4 MiB          8kB / 10kB
+```
+
+---
+
+## Detener el contenedor
+
+Ejecutar
+
+```bash
+docker stop echo-lab
+```
+Consultar nuevamente:
+
+```bash
+docker ps
+```
+    No deberá aparecer el contenedor.
+
+Verificar todos los contenedores:
+```bash
+docker ps -a
+```
+Resultado esperado:
+```bash
+STATUS
+
+Exited (0)
+```
+
+---
+
+## Reiniciar el contenedor
+
+Ejecutar
+
+```bash
+docker start echo-lab
+```
+
+Comprobar nuevamente:
+```bash
+docker ps
+```
+
+---
+
+## Eliminar el contenedor
+
+Detener el contenedor.
+```bash
+docker stop echo-lab
+```
+Eliminarlo.
+```bash
+docker rm echo-lab
+```
+Verificar:
+```bash
+docker ps -a
+```
+
+El contenedor ya no debe aparecer.
