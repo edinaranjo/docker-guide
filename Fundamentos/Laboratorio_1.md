@@ -2,7 +2,7 @@
 
 ## Objetivos
 https://github.com/edinaranjo/docker-guide/blob/main/Fundamentos/Laboratorio_1.md
-Al finalizar esta práctica el estudiante será capaz de:
+Al finalizar esta práctica el estudiante será capaz de: 
 
 >- Desplegar una aplicación HTTP utilizando Docker.
 >- Comprender el ciclo de vida de un contenedor.
