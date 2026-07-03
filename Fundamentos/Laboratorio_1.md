@@ -1,7 +1,7 @@
 # 🐳 Laboratorio: Administración y Monitoreo de Contenedores con HashiCorp Http-Echo
 
 ## Objetivos
-
+https://github.com/edinaranjo/docker-guide/blob/main/Fundamentos/Laboratorio_1.md
 Al finalizar esta práctica el estudiante será capaz de:
 
 >- Desplegar una aplicación HTTP utilizando Docker.
@@ -55,7 +55,7 @@ Posteriormente se realizarán diferentes tareas administrativas para analizar el
 
 1. Descargar la imagen
 
-Consulte las imágenes disponibles
+  Consulte las imágenes disponibles
 
 ```bash
 docker image ls
@@ -69,8 +69,18 @@ docker pull hashicorp/http-echo
 
 3. Verificar
 
-4. ```bash
+```bash
 docker image ls
 ```
 
+  Debe aparecer
+
+```bash
+IMAGE                        ID             DISK USAGE   CONTENT SIZE   EXTRA
+hashicorp/http-echo:latest   fcb75f691c8b       16.7MB         4.63MB 
+```
+4. 
+
 5. 
+
+6. 
