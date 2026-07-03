@@ -1,4 +1,4 @@
-# 🚀 Laboratorio 1: Administración Básica de Contenedores con HashiCorp Http-Echo
+# 🚀 Laboratorio 1: Administración Básica de Contenedores con HashiCorp Http-Echo 
 
 > [!NOTE]
 > **Curso:** Prácticas de DevOps utilizando Docker y GitFlow  
