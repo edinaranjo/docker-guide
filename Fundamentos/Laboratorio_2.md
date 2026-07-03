@@ -17,11 +17,9 @@ Al finalizar esta práctica el estudiante será capaz de:
 
 # 📖 Escenario
 
-En este laboratorio se desplegará una instancia de **Grafana** dentro de un contenedor Docker. Posteriormente se verificará el estado de salud del servicio mediante un **Healthcheck**, se realizarán pruebas de conectividad HTTP y se analizará el comportamiento del contenedor utilizando las principales herramientas de monitoreo y administración proporcionadas por Docker.
+En este laboratorio se desplegará una instancia de **Caddy Alpine** dentro de un contenedor Docker. Posteriormente se verificará el estado de salud del servicio mediante un **Healthcheck**, se realizarán pruebas de conectividad HTTP y se analizará el comportamiento del contenedor utilizando las principales herramientas de monitoreo y administración proporcionadas por Docker.
 
 Este laboratorio representa un escenario típico utilizado por equipos **DevOps** para validar la disponibilidad de aplicaciones antes de su despliegue en ambientes productivos.
-
----
 
 # 🏗️ Arquitectura del laboratorio
 
@@ -30,17 +28,17 @@ Este laboratorio representa un escenario típico utilizado por equipos **DevOps*
                                 │
           ┌─────────────────────┼─────────────────────┐
           │                     │                     │
-          │                 Navegador              curl
+          │                Navegador               curl
           │                     │                     │
           └─────────────────────┼─────────────────────┘
                                 │
-                         http://localhost:3000
+                         http://localhost:8080
                                 │
                                 ▼
                  +----------------------------------+
-                 |      📊 Grafana Container         |
+                 |       🌐 Caddy Web Server        |
                  |                                  |
-                 |        Docker Engine             |
+                 |        Docker Container          |
                  +----------------------------------+
                      │         │           │
                      │         │           │
@@ -51,34 +49,48 @@ Este laboratorio representa un escenario típico utilizado por equipos **DevOps*
                  📜 Docker Logs
 ```
 
-> 💡 **Objetivo del laboratorio:** Validar el estado operacional de una aplicación contenerizada mediante pruebas de disponibilidad, monitoreo de recursos y análisis de la configuración interna del contenedor.
+> 💡 **Objetivo del laboratorio:** Validar el estado operacional de un servidor web contenerizado mediante pruebas de disponibilidad, monitoreo de recursos y análisis de la configuración interna del contenedor.
 
 ---
 
-# 📥 Paso1 1. Descarga de la imagen
+# 📥 Paso 1. Descargar la imagen
 
-En esta primera actividad se descargará la imagen oficial de caddy alpine desde **Docker Hub**. Posteriormente, se verificará que la imagen se encuentre disponible en el repositorio local del equipo
+En esta primera actividad se descargará la imagen oficial de **Caddy Alpine** desde **Docker Hub**. Posteriormente, se verificará que la imagen se encuentre disponible en el repositorio local del equipo.
 
 ```bash
-docker pull grafana/grafana:latest
+docker pull caddy:alpine
+```
+
+Verificar que la imagen fue descargada correctamente.
+
+```bash
+docker image ls
+```
+
+Resultado esperado:
+
+```text
+REPOSITORY      TAG        IMAGE ID
+
+caddy           alpine     xxxxxxxxxxxx
 ```
 
 ---
 
 # 🚀 Paso 2. Crear el contenedor con Healthcheck
 
-Crear un contenedor denominado **grafana-lab** configurando un **Healthcheck** que verifique periódicamente la disponibilidad del servicio mediante el endpoint `/api/health`.
+Crear un contenedor denominado **caddy-lab** configurando un **Healthcheck** que verifique periódicamente la disponibilidad del servidor web.
 
 ```bash
 docker run -d \
---name grafana-lab \
--p 3000:3000 \
---health-cmd="wget --spider -q http://localhost:3000/api/health || exit 1" \
---health-interval=20s \
+--name caddy-lab \
+-p 8080:80 \
+--health-cmd="wget -q --spider http://127.0.0.1:80 || exit 1" \
+--health-interval=10s \
 --health-timeout=5s \
 --health-retries=3 \
---health-start-period=40s \
-grafana/grafana
+--health-start-period=10s \
+caddy:alpine
 ```
 
 ### 🔍 Explicación de los parámetros
@@ -87,17 +99,16 @@ grafana/grafana
 |-----------|-------------|
 | `docker run` | Crea y ejecuta un nuevo contenedor. |
 | `-d` | Ejecuta el contenedor en segundo plano (*Detached Mode*). |
-| `--name grafana-lab` | Asigna el nombre **grafana-lab** al contenedor. |
-| `-p 3000:3000` | Publica el puerto 3000 del contenedor en el equipo anfitrión. |
-| `--health-cmd` | Ejecuta una comprobación HTTP sobre el endpoint `/api/health`. |
-| `--health-interval=20s` | Ejecuta el Healthcheck cada 20 segundos. |
+| `--name caddy-lab` | Asigna el nombre **caddy-lab** al contenedor. |
+| `-p 8080:80` | Publica el puerto **80** del contenedor en el puerto **8080** del equipo anfitrión. |
+| `--health-cmd` | Ejecuta una comprobación HTTP sobre la página principal del servidor web. |
+| `--health-interval=10s` | Ejecuta el Healthcheck cada 10 segundos. |
 | `--health-timeout=5s` | Tiempo máximo permitido para responder al Healthcheck. |
 | `--health-retries=3` | Número de fallos consecutivos antes de marcar el contenedor como **unhealthy**. |
-| `--health-start-period=40s` | Tiempo de espera antes de iniciar las comprobaciones del Healthcheck. |
-| `grafana/grafana` | Imagen oficial de Grafana utilizada para el laboratorio. |
+| `--health-start-period=10s` | Tiempo de espera antes de iniciar las comprobaciones del Healthcheck. |
+| `caddy:alpine` | Imagen oficial de Caddy basada en Alpine Linux. |
 
-> 💡 **Nota:** El parámetro `--health-start-period` evita que Docker marque el contenedor como **unhealthy** mientras Grafana aún se encuentra inicializando.
-
+> 💡 **Nota:** Caddy inicia el servidor web prácticamente de forma inmediata, por lo que un **Healthcheck** configurado con un período de espera corto resulta suficiente para verificar correctamente la disponibilidad del servicio.
 ---
 
 # ❤️ Paso 3. Verificar el estado del contenedor
@@ -129,7 +140,7 @@ Consultar únicamente el estado actual del Healthcheck.
 ```bash
 docker inspect \
 --format='{{.State.Health.Status}}' \
-grafana-lab
+caddy-lab
 ```
 
 ### 📌 Resultado esperado
@@ -147,7 +158,7 @@ Mostrar el historial completo de las verificaciones realizadas por Docker.
 ```bash
 docker inspect \
 --format='{{json .State.Health}}' \
-grafana-lab
+caddy-lab
 ```
 
 Analice la información obtenida e identifique los siguientes elementos:
