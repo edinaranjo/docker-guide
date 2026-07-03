@@ -1,4 +1,4 @@
-# 🐳 Laboratorio: Administración Básica de Contenedores con HashiCorp Http-Echo
+# 🐳 Laboratorio: Administración Básica de Contenedores con HashiCorp Http-Echo 
 
 
 ## Objetivos
