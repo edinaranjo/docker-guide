@@ -19,7 +19,7 @@ Nota: Esta instalación es para distribuciones basadas en Debian
 
 ---
 
-# 🔍 Paso 2. Verificar la instalación
+# 🔍 Verificación de la instalación
 
 Comprobar la versión instalada.
 
