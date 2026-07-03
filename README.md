@@ -80,12 +80,7 @@ E --> D
 ```text
 📦 Docker-Labs
 │
-├── 📁 Laboratorio_01
-├── 📁 Laboratorio_02
-├── 📁 Laboratorio_03
-├── 📁 Laboratorio_04
-├── 📁 Recursos
-│
+├── 📁 Fundamentos
 └── 📄 README.md
 ```
 
