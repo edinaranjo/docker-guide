@@ -121,11 +121,12 @@ La estructura será similar a:
 
 ```text
 sample-app/
-├── Dockerfile
 ├── sample-app.sh
-├── app.py
-├── requirements.txt
-└── ...
+├── sample-app.py
+├── static
+├── templates
+└── tempdir
+
 ```
 
 > [!NOTE]
