@@ -38,29 +38,4 @@ Comandos esenciales para gestionar el entorno de red:
 *   ✂️ **Desconectar contenedor:** `docker network disconnect mi_red mi_contenedor`
 *   🗑️ **Eliminar red:** `docker network rm mi_red`
 
----
 
-## 🚀 4. Implementación Práctica
-
-### Conectividad en Redes Bridge Personalizadas
-Al usar una red creada por el usuario, Docker habilita la resolución de nombres automática:
-
-```bash
-# 1. Crear la red
-docker network create mi_red_bridge
-
-# 2. Desplegar contenedores en esa red
-docker run -dit --name app_web --network mi_red_bridge nginx
-docker run -dit --name base_datos --network mi_red_bridge mysql:8
-
-# 3. Probar comunicación por NOMBRE
-docker exec -it app_web ping base_datos
-```
-
-### Uso de Red Host
-Útil cuando el contenedor necesita usar puertos del host directamente sin mapeos `-p`:
-```bash
-docker run -dit --name mi_servidor --network host nginx
-```
-
----
