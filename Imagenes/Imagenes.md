@@ -51,6 +51,10 @@ Un **Dockerfile** es un archivo de texto plano que contiene las instrucciones pa
 
 ---
 
+
+
+
+
 ## 🚀 4. Optimización con Multi-stage Builds
 
 Para despliegues profesionales, se recomienda el uso de **imágenes multi-stage**. Esto permite usar varias etapas (`FROM`) en un solo Dockerfile.
