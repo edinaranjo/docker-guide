@@ -161,9 +161,9 @@ sh -c "cp /backup/* /data"
 | Elemento | Descripción |
 |----------|-------------|
 | `--rm` | Elimina automáticamente el contenedor al finalizar. |
-| `-v mi_volumen:/data` | Monta el volumen Docker. |
+| `-v mi_volumen:/data` | Monta el volumen mi_volumen. |
 | `-v "$BACKUP_DIR":/backup` | Monta el directorio del sistema operativo. |
-| `cp /backup/* /data` | Copia todos los archivos al volumen Docker. |
+| `cp /backup/* /data` | Copia todos los archivos al volumen mi_volumen. |
 
 ---
 
