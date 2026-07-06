@@ -1,0 +1,5 @@
+FROM gcc:12
+WORKDIR /app
+COPY hello.c .
+RUN gcc -o hello hello.c
+CMD ["./hello"]
