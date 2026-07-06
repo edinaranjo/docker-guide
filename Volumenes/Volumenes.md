@@ -1,6 +1,3 @@
-Aquí tienes una propuesta de archivo **README.md** profesional y didáctico sobre los **Volúmenes en Docker**, diseñado para GitHub y basado íntegramente en la información técnica de tus fuentes.
-
----
 
 # 💾 Guía Profesional: Volúmenes y Persistencia en Docker
 
@@ -65,6 +62,3 @@ Para un despliegue de nivel empresarial, sigue estos lineamientos:
 *   **Nombres Descriptivos:** Utiliza nombres claros como `db_data_prod` o `uploads_v1`.
 *   **Backups Regulares:** Realiza respaldos constantes de los volúmenes que contienen bases de datos críticas.
 *   **Seguridad:** Evita exponer datos sensibles mediante bind mounts con permisos incorrectos en el host.
-
----
-*Este material forma parte de la Unidad 2: Imágenes, volúmenes y redes en Docker.*
