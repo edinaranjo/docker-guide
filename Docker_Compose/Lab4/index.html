@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>DevOps Docker Compose Lab</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>🐳 DevOps Docker Compose Lab</h1>
+            <p>Despliegue automatizado con Dockerfile, Docker Compose y Healthcheck</p>
+            <a href="/health" class="btn">Ver Healthcheck</a>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="status-card">
+            <h2>Estado del Servicio</h2>
+            <p class="status">✔ Aplicación funcionando correctamente</p>
+            <p>El contenedor se encuentra desplegado y disponible desde Docker Compose.</p>
+        </section>
+
+        <section class="grid">
+
+            <div class="card">
+                <h3>📦 Imagen Docker</h3>
+                <p>La aplicación se construye automáticamente desde un Dockerfile personalizado.</p>
+            </div>
+
+            <div class="card">
+                <h3>⚙️ Docker Compose</h3>
+                <p>El despliegue se automatiza mediante un archivo docker-compose.yml.</p>
+            </div>
+
+            <div class="card">
+                <h3>❤️ Healthcheck</h3>
+                <p>Docker verifica periódicamente si la aplicación responde correctamente.</p>
+            </div>
+
+            <div class="card">
+                <h3>📊 Logs</h3>
+                <p>Los registros permiten analizar eventos, errores y solicitudes HTTP.</p>
+            </div>
+
+        </section>
+
+        <section class="info">
+            <h2>Información del entorno</h2>
+
+            <table>
+                <tr>
+                    <td>Framework</td>
+                    <td>Flask</td>
+                </tr>
+                <tr>
+                    <td>Contenedor</td>
+                    <td>Docker</td>
+                </tr>
+                <tr>
+                    <td>Orquestación básica</td>
+                    <td>Docker Compose</td>
+                </tr>
+                <tr>
+                    <td>Puerto publicado</td>
+                    <td>5000</td>
+                </tr>
+                <tr>
+                    <td>Ruta de salud</td>
+                    <td>/health</td>
+                </tr>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Curso de Profesionalización en DevOps | Docker Compose Laboratory</p>
+    </footer>
+
+</body>
+</html>
