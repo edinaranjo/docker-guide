@@ -81,6 +81,10 @@ E --> D
 📦 Docker-Labs
 │
 ├── 📁 Fundamentos
+├── 📁 Imágenes
+├── 📁 Volúmenes
+├── 📁 Redes
+├── 📁 Docker Compose
 └── 📄 README.md
 ```
 
