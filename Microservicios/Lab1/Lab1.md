@@ -13,8 +13,6 @@ En este laboratorio se implementará una arquitectura compuesta por **dos micros
 
 El objetivo es comprender cómo los contenedores pueden descubrirse utilizando el nombre del servicio sin necesidad de conocer direcciones IP, aplicando principios fundamentales de las arquitecturas basadas en microservicios.
 
-> 💡 Este laboratorio está basado en el **Ejemplo 1: Dos microservicios que se llaman entre sí** de la Unidad 5 del material del curso. :contentReference[oaicite:0]{index=0}
-
 ---
 
 # 🎯 Objetivos
