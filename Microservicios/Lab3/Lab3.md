@@ -11,7 +11,7 @@
 
 En este laboratorio se construirá un **microservicio de conversión de monedas** utilizando **FastAPI**, **Docker** y **Docker Compose**.
 
-El servicio permitirá convertir un valor en dólares estadounidenses (**USD**) a euros (**EUR**) mediante una tasa fija de ejemplo. Además, incluirá una ruta `/health` para verificar el estado del servicio, siguiendo buenas prácticas básicas de aplicaciones en contenedores. El documento base define este microservicio con las rutas `/health` y `/convert`, usando **Pydantic** para validar la entrada JSON y exponiendo el servicio en el puerto `8002`. :contentReference[oaicite:0]{index=0}
+El servicio permitirá convertir un valor en dólares estadounidenses (**USD**) a euros (**EUR**) mediante una tasa fija de ejemplo. Además, incluirá una ruta `/health` para verificar el estado del servicio, siguiendo buenas prácticas básicas de aplicaciones en contenedores. El documento base define este microservicio con las rutas `/health` y `/convert`, usando **Pydantic** para validar la entrada JSON y exponiendo el servicio en el puerto `8002`. 
 
 ---
 
