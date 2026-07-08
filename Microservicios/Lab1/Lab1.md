@@ -260,44 +260,24 @@ docker compose up --build
 
 Docker Compose realiza automáticamente las siguientes tareas:
 
-```text
-Leer docker-compose.yml
+```mermaid
+flowchart TD
 
-            │
+A[docker compose up --build]
 
-            ▼
+A --> B[Leer docker-compose.yml]
 
-Construir ambas imágenes
+B --> C[Construir imágenes]
 
-            │
+C --> D[Crear red Docker]
 
-            ▼
+D --> E[Crear contenedores]
 
-Crear una red privada
+E --> F[Iniciar Service B]
 
-            │
+F --> G[Iniciar Service A]
 
-            ▼
-
-Crear ambos contenedores
-
-            │
-
-            ▼
-
-Iniciar Service B
-
-            │
-
-            ▼
-
-Iniciar Service A
-
-            │
-
-            ▼
-
-Ambos servicios pueden comunicarse
+G --> H[Microservicios disponibles]
 ```
 
 ---
