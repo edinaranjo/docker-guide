@@ -62,32 +62,20 @@ Docker Compose crea automáticamente una red privada donde **service-a** puede l
 
 # 📁 Estructura del proyecto
 
-```text
-micro1/
-
+📁 micro1
+├── 📁 service-a
+│   ├── 📄 app.py
+│   ├── 📄 Dockerfile
+│   └── 📄 requirements.txt
 │
-
-├── service-a/
-
-│   ├── app.py
-
-│   ├── Dockerfile
-
-│   └── requirements.txt
-
+├── 📁 service-b
+│   ├── 📄 app.py
+│   ├── 📄 Dockerfile
+│   └── 📄 requirements.txt
 │
+└── 📄 docker-compose.yml
 
-├── service-b/
 
-│   ├── app.py
-
-│   ├── Dockerfile
-
-│   └── requirements.txt
-
-│
-
-└── docker-compose.yml
 ```
 
 ---
