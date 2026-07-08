@@ -13,8 +13,6 @@ En este laboratorio se implementará el patrón **Sidecar** para recolectar logs
 
 El servicio principal estará desarrollado con **FastAPI** y escribirá sus registros en un archivo compartido. Un segundo contenedor, llamado **log-collector**, leerá ese archivo en tiempo real usando `tail -f`.
 
-Este ejemplo está basado en el **Ejemplo 4: Microservicio sidecar para recolección de logs** del documento `Docker_Unidad_5.pdf`, donde se define un servicio `web`, un volumen compartido `./logs:/logs` y un contenedor `log-collector` basado en BusyBox. :contentReference[oaicite:0]{index=0} :contentReference[oaicite:1]{index=1}
-
 ---
 
 # 🎯 Objetivos
