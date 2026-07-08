@@ -30,30 +30,22 @@ Al finalizar este laboratorio el estudiante será capaz de:
 
 # 🏗️ Arquitectura
 
-```text
-                   Usuario
+```mermaid
+flowchart LR
 
-                      │
+    U([👤 Usuario])
 
-                      ▼
+    A["🐳 Service A<br>FastAPI"]
 
-          http://localhost:8000/greet
+    B["🐳 Service B<br>FastAPI"]
 
-                      │
+    U -->|GET /greet| A
 
-                      ▼
+    A -->|HTTP GET /info| B
 
-             ┌─────────────────┐
-             │   Service A      │
-             │   FastAPI        │
-             └────────┬─────────┘
-                      │
-         HTTP Request │
-                      ▼
-             ┌─────────────────┐
-             │   Service B      │
-             │   FastAPI        │
-             └─────────────────┘
+    B -->|JSON| A
+
+    A -->|Respuesta| U
 ```
 
 Docker Compose crea automáticamente una red privada donde **service-a** puede localizar a **service-b** utilizando únicamente su nombre.
