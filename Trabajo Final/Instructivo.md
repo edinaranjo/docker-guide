@@ -50,29 +50,29 @@ Los archivos son:
 
 ---
 
-# 💾 Paso 5. Confirmar los cambios
+## 💾 Paso 5. Confirmar los cambios
 
 Realice las operaciones necesarias de git y gitflow para agregar y confirmar sus archivos en el repositorio. Utilice commits adecuados.
 
 ---
 
-# 🚀 Paso 6. Crear la versión Release
+## 🚀 Paso 6. Crear la versión Release
 
 Cree el versionamiento de la aplicación usando una rama release
 
 --- 
 
-# 📤 Paso 7. Envie el contenido del directorio y las etiquetas a un repositorio en GitHub que tenga el mismo nombre.
+## 📤 Paso 7. Envie el contenido del directorio y las etiquetas a un repositorio en GitHub que tenga el mismo nombre.
 
 ---
 
-# ⚙️ Paso 8. Crear el workflow de GitHub Actions
+## ⚙️ Paso 8. Crear el workflow de GitHub Actions
 
 Elabore un workflow en GitHub Actions para crear la imagen usando el Dockerfile y subirla a DockerHub. El nombre de la imagen será devops-final-project:v1. Adjunte el código del workflow y una captura de pantalla de la imagen subida en Docker Hub en su repositorio.
 
 --- 
 
-# 🐳 Paso 9. Crear el contenedor
+## 🐳 Paso 9. Crear el contenedor
 
 Cada grupo deberá ejecutar la imagen publicada en Docker Hub utilizando variables de entorno.
 
@@ -90,7 +90,7 @@ docker run -d \
 
 ---
 
-## Ejemplo para el Grupo 1
+### Ejemplo para el Grupo 1
 
 ```bash
 docker run -d \
@@ -104,7 +104,7 @@ docker run -d \
 
 ---
 
-## 🔍 Descripción del comando
+### 🔍 Descripción del comando
 
 | Parámetro | Función |
 |---|---|
@@ -119,7 +119,7 @@ docker run -d \
 
 ---
 
-# 🔌 Asignación de puertos por grupo
+### 🔌 Asignación de puertos por grupo
 
 Cada grupo deberá utilizar un puerto diferente en el equipo host.
 
@@ -149,7 +149,7 @@ docker run -d \
 
 ---
 
-# 📦 Paso 10. Verificar la imagen
+## 📦 Paso 10. Verificar la imagen
 
 Ejecutar:
 
@@ -175,7 +175,7 @@ REPOSITORY                               TAG   IMAGE ID       CREATED          S
 
 ---
 
-# 🖥️ Paso 11. Verificar el contenedor
+## 🖥️ Paso 11. Verificar el contenedor
 
 Ejecutar:
 
@@ -232,7 +232,7 @@ healthy
 
 ---
 
-# 🌐 Paso 12. Probar la aplicación
+## 🌐 Paso 12. Probar la aplicación
 
 Abrir en el navegador:
 
@@ -361,3 +361,164 @@ La raíz deberá contener:
 
 ## 15. Conclusiones
 ```
+
+# 🔬 Paso 16. Prueba por parte del instructor
+
+El instructor seleccionará la imagen publicada por uno de los integrantes del grupo y ejecutará un contenedor.
+
+Ejemplo:
+
+```bash
+docker pull <usuario>/devops-final-project:v1
+```
+
+```bash
+docker run -d \
+  --name validacion-instructor \
+  -p 9000:8000 \
+  -e GROUP_NAME="Grupo 1" \
+  -e GROUP_MEMBERS="Ana, Luis, Carlos" \
+  -e COURSE_NAME="Curso de Profesionalización en DevOps" \
+  <usuario>/devops-final-project:v1
+```
+
+La página obtenida debe coincidir funcionalmente con la evidencia presentada en el informe.
+
+---
+
+## ✅ Criterios de validación
+
+La prueba se considerará satisfactoria cuando:
+
+- La imagen pueda descargarse.
+- El contenedor inicie sin errores.
+- El estado cambie a `healthy`.
+- La página cargue correctamente.
+- Las variables de entorno aparezcan en la interfaz.
+- Los endpoints `/health`, `/info` y `/metrics` respondan.
+- La imagen corresponda a la etiqueta `v1`.
+
+---
+
+# 📊 Parámetros de calificación
+
+| Criterio | Puntaje |
+|---|---:|
+| `README.md` completo y correctamente estructurado | 5 |
+| Informe técnico en formato `.md` | 10 |
+| Repositorio con ramas `develop` y `main` | 10 |
+| Etiquetas Git: una o dos etiquetas | 2 |
+| Imagen publicada en Docker Hub | 3 |
+| Prueba de funcionamiento | 10 |
+| **Total** | **40** |
+
+---
+
+# 📄 Paso 17. Entregable para el aula virtual
+
+El grupo deberá subir al aula virtual un documento en formato PDF.
+
+El documento debe contener:
+
+- Nombre completo de los integrantes.
+- Número del grupo.
+- URL del repositorio de GitHub.
+- URL del repositorio de Docker Hub.
+- Nombre completo de la imagen.
+- Etiqueta utilizada.
+
+---
+
+## 📑 Formato sugerido
+
+```text
+TRABAJO FINAL DEVOPS
+
+Grupo: Grupo 1
+
+Integrantes:
+- Ana Pérez
+- Luis Gómez
+- Carlos Torres
+
+Repositorio GitHub:
+https://github.com/usuario/proyecto-final-devops
+
+Repositorio Docker Hub:
+https://hub.docker.com/r/usuario/devops-final-project
+
+Imagen:
+usuario/devops-final-project:v1
+```
+
+---
+
+# 📋 Lista de verificación final
+
+Antes de realizar la entrega, verifique:
+
+- [ ] El workflow se ejecuta correctamente.
+- [ ] Los secretos están configurados en GitHub.
+- [ ] La imagen existe en Docker Hub.
+- [ ] La imagen utiliza la etiqueta `v1`.
+- [ ] El contenedor puede ejecutarse en otro equipo.
+- [ ] Las variables del grupo aparecen en la página.
+- [ ] El contenedor presenta estado `healthy`.
+- [ ] Se verificó la imagen con `docker image ls`.
+- [ ] Se verificó el contenedor con `docker ps -a`.
+- [ ] El archivo `INFORME.md` está en la raíz.
+- [ ] El archivo `README.md` contiene las imágenes de Docker Hub.
+- [ ] Solo existen las dos capturas autorizadas.
+- [ ] El PDF contiene los integrantes y las URL solicitadas.
+
+---
+
+# 🏁 Flujo completo del trabajo final
+
+```mermaid
+flowchart TD
+
+    A["📁 Proyecto versionado"]
+
+    B["☁️ Repositorio GitHub"]
+
+    C["⚙️ GitHub Actions"]
+
+    D["🏗️ Construcción de imagen"]
+
+    E["🐳 Docker Hub"]
+
+    F["💻 Descarga de imagen"]
+
+    G["🌱 Variables del grupo"]
+
+    H["🚀 Creación del contenedor"]
+
+    I["❤️ Estado healthy"]
+
+    J["🌐 Prueba en navegador"]
+
+    K["📝 INFORME.md"]
+
+    L["📄 PDF de entrega"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> H
+    G --> H
+    H --> I
+    I --> J
+    J --> K
+    K --> L
+```
+
+---
+
+<div align="center">
+
+## 🚀 Curso de Profesionalización en DevOps
+
+**GitHub Actions • Docker • Docker Hub • CI/CD • Automatización**
