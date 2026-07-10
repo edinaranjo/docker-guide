@@ -7,17 +7,15 @@
 
 ---
 
-# 📁 Paso 1. Crear el directorio del proyecto llamado proyecto-final-devops 
+## 📁 Paso 1. Crear el directorio del proyecto llamado proyecto-final-devops 
 
 ---
 
-# 🌿 Paso 2. Inicializar Git y Git Flow dentro del directorio del proyecto
+## 🌿 Paso 2. Inicializar Git y Git Flow dentro del directorio del proyecto
 
 ---
 
-# 📁 Paso 3. Crear la estructura del proyecto
-
-Crear la siguiente estructura.
+## 📁 Paso 3. Crear la estructura del proyecto
 
 ```text
 📁 proyecto-final-devops
@@ -34,4 +32,24 @@ Crear la siguiente estructura.
 │
 └── 📄 .dockerignore
 ```
+---
 
+##  📄 Paso 4. Agregar el contenido
+
+Copie en cada archivo el contenido proporcionado en este repositorio.
+
+Los archivos son:
+
+| Archivo | Descripción |
+|----------|-------------|
+| `main.py` | Aplicación principal |
+| `index.html` | Página web |
+| `requirements.txt` | Dependencias Python |
+| `Dockerfile` | Construcción de la imagen Docker |
+| `.dockerignore` | Exclusión de archivos durante la construcción |
+
+---
+
+# 💾 Paso 5. Confirmar los cambios
+
+Realice las operaciones necesarias de git y gitflow para agregar y confirmar sus archivos en el repositorio. Utilice commits adecuados.
