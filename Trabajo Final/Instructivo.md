@@ -7,7 +7,7 @@
 
 ---
 
-# 📁 Paso 1. Crear el directorio del proyecto llamado proyecto-final-devops
+# 📁 Paso 1. Crear el directorio del proyecto llamado proyecto-final-devops 
 
 ---
 
