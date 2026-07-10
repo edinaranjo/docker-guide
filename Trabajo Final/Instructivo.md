@@ -406,9 +406,9 @@ La prueba se considerará satisfactoria cuando:
 |---|---:|
 | `README.md` completo y correctamente estructurado | 5 |
 | Informe técnico en formato `.md` | 10 |
-| Repositorio con ramas `develop` y `main` | 10 |
+| Repositorio con ramas `develop` y `main` | 8 |
 | Etiquetas Git: una o dos etiquetas | 2 |
-| Imagen publicada en Docker Hub | 3 |
+| Imagen publicada en Docker Hub | 5 |
 | Prueba de funcionamiento | 10 |
 | **Total** | **40** |
 
