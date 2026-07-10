@@ -339,9 +339,9 @@ La raíz deberá contener:
 
 ## 4. Configuración de Git y GitFlow
 
-## 5. Historial de commits
+## 5. Agregación de contenido e Historial de commits
 
-## 6. Creación de la release
+## 6. Creación del versionamiento con release
 
 ## 7. Publicación en GitHub
 
