@@ -458,7 +458,7 @@ usuario/devops-final-project:v1
 Antes de realizar la entrega, verifique:
 
 - [ ] El workflow se ejecuta correctamente.
-- [ ] Los secretos están configurados en GitHub.
+- [ ] Las credenciales están configurados en GitHub.
 - [ ] La imagen existe en Docker Hub.
 - [ ] La imagen utiliza la etiqueta `v1`.
 - [ ] El contenedor puede ejecutarse en otro equipo.
@@ -467,7 +467,7 @@ Antes de realizar la entrega, verifique:
 - [ ] Se verificó la imagen con `docker image ls`.
 - [ ] Se verificó el contenedor con `docker ps -a`.
 - [ ] El archivo `INFORME.md` está en la raíz.
-- [ ] El archivo `README.md` contiene las imágenes de Docker Hub.
+- [ ] El archivo `INFORME.md` contiene las imágenes de Docker Hub.
 - [ ] Solo existen las dos capturas autorizadas.
 - [ ] El PDF contiene los integrantes y las URL solicitadas.
 
